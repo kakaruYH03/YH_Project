@@ -15,6 +15,16 @@ public class MainManager : MonoBehaviour
     // Present한 ViewManager들
     Stack<ViewManager> viewManagers = new Stack<ViewManager>();
 
+    public static MainManager Instance;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+    }
+
     private void Start()
     {
         // Welcom 메세지 출력
@@ -75,7 +85,6 @@ public class MainManager : MonoBehaviour
             ViewManager oldViewManager = viewManagers.Peek();
             if (oldViewManager.rightNavgationViewButton)
             {
-
                 oldViewManager.rightNavgationViewButton.gameObject.SetActive(false);
             }
         }

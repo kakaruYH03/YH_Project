@@ -63,14 +63,11 @@ public class Cell : MonoBehaviour
         }
     }
 
-
-
     private void Start()
     {
         cellButton = GetComponent<Button>();
         this.ActiveDelete = false;
     }
-
 
     public void OnClick()
     {
@@ -81,5 +78,4 @@ public class Cell : MonoBehaviour
     {
         cellDelegate.DidSelectDeleteCell(this);
     }
-        
 }

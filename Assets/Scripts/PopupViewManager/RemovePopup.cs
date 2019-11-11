@@ -7,7 +7,6 @@ public class RemovePopup : PopupViewManager
     public delegate void RemovePopupViewManagerDelegate();
     public RemovePopupViewManagerDelegate removePopupViewManagerDelegate;
 
-
     public void OnClickOk()
     {
         removePopupViewManagerDelegate?.Invoke();

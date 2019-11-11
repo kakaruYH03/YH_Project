@@ -34,7 +34,6 @@ public class AddPopupViewManager : PopupViewManager
         string phoneNumber = phoneNumberInputField.text;
         string email = emailInputField.text;
 
-
         bool isValid = true;
 
         if (name.Length < 1)
@@ -101,5 +100,4 @@ public class AddPopupViewManager : PopupViewManager
             profilePhotoImage.sprite = sprite;
         };
     }
-    
 }

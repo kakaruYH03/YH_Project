@@ -17,25 +17,23 @@ public static class SCInputField
             inputField.transform.Find("Text").GetComponent<Text>().color
                 = Color.white;
         }
-
         inputField.transform.Find("Placeholder").gameObject.SetActive(editMode);
         inputField.GetComponent<InputField>().interactable = editMode;
         inputField.GetComponent<Image>().enabled = editMode;
     }
 }
+
 public class DetailViewManager : ViewManager
 {
     [SerializeField] InputField nameInputField;
     [SerializeField] InputField phoneNumberInputField;
     [SerializeField] InputField emailInputField;
     [SerializeField] Button saveButton;
-    [SerializeField] Image detailImage;
+    [SerializeField] ImageButton detailImage;
 
     public delegate void DetailViewManagerSaveDelegate(Contact contact);
     public DetailViewManagerSaveDelegate saveDelegate;
-
     public Contact? contacts;
-
     bool editMode = true;
 
     void ToggleEditMode(bool updateInputField = false)
@@ -44,11 +42,11 @@ public class DetailViewManager : ViewManager
 
         // 저장버튼
         saveButton.gameObject.SetActive(editMode);
-
         nameInputField.SetImmutable(editMode);
         phoneNumberInputField.SetImmutable(editMode);
         emailInputField.SetImmutable(editMode);
-
+        detailImage.Editable = editMode;
+        
         if (editMode)
         {
             rightNavgationViewButton.SetTitle("취소");
@@ -60,12 +58,13 @@ public class DetailViewManager : ViewManager
             // 데이터 화면 출력
             if (contacts.HasValue && !updateInputField)
             {
-
                 Contact contactValue = contacts.Value;
                 nameInputField.text = contactValue.name;
                 phoneNumberInputField.text = contactValue.phoneNumber;
                 emailInputField.text = contactValue.email;
-                detailImage.sprite = SpriteManager.GetSprite(contactValue.profilePhotoFileName);
+
+                // 사진도 출력
+                detailImage.Image = SpriteManager.GetSprite(contactValue.profilePhotoFileName);
             }
         }
     }
@@ -95,14 +94,12 @@ public class DetailViewManager : ViewManager
 
     public void Save()
     {
-
         Contact newContact = new Contact();
         newContact.name = nameInputField.text;
         newContact.phoneNumber = phoneNumberInputField.text;
         newContact.email = emailInputField.text;
-         
+        newContact.profilePhotoFileName = detailImage.Image.name;
         saveDelegate?.Invoke(newContact);
-
         ToggleEditMode(true);
     }
 }

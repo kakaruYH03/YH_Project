@@ -8,7 +8,6 @@ public class ScrollViewManager : ViewManager, ICell
     [SerializeField] GameObject addPopupViewPrefab;
     [SerializeField] GameObject detailViewPrefab;
     [SerializeField] GameObject removePopupPrefab;
-
     [SerializeField] RectTransform content;
 
     List<Cell> cellList = new List<Cell>();
@@ -19,17 +18,14 @@ public class ScrollViewManager : ViewManager, ICell
     // Cell 편집 버튼 관련
     bool isEditable = false;
 
-
     private void Awake()
     {
-
         // Title 지정
         title = "YH 연락처";
 
         // Add 버튼
         rightNavgationViewButton = Instantiate(buttonPrefab).GetComponent<SCButton>();
         rightNavgationViewButton.SetTitle("추가");
-
         rightNavgationViewButton.SetOnClickAction(() =>
         {
             // TODO: AddPopupViewManager를 표시하는 동작
@@ -94,9 +90,7 @@ public class ScrollViewManager : ViewManager, ICell
             
             for (int i = 0; i < contactsValue.contactList.Count; i++)
             {
-
                 AddCell(contactsValue.contactList[i], i);
-
             }
         }
     }
@@ -141,7 +135,6 @@ public class ScrollViewManager : ViewManager, ICell
         {
             content.sizeDelta = Vector2.zero;
         }
-
     }
 
     private void OnApplicationQuit()
@@ -158,9 +151,7 @@ public class ScrollViewManager : ViewManager, ICell
         if (contacts.HasValue)
         {
             int cellIndex = cellList.IndexOf(cell);
-
             DetailViewManager detailViewManager = Instantiate(detailViewPrefab).GetComponent<DetailViewManager>();
-
             Contact selectedContact = contacts.Value.contactList[cellIndex];
             detailViewManager.contacts = selectedContact;
 
@@ -170,6 +161,7 @@ public class ScrollViewManager : ViewManager, ICell
             {
                 contacts.Value.contactList[cellIndex] = newContact;
                 cell.Title = newContact.name;
+                cell.ProfilePhotoSprite = SpriteManager.GetSprite(newContact.profilePhotoFileName);
             };
             mainManager.PresentViewManager(detailViewManager);
         }
@@ -180,7 +172,6 @@ public class ScrollViewManager : ViewManager, ICell
         if (contacts.HasValue)
         {
             RemovePopup removePopup = Instantiate(removePopupPrefab, mainManager.transform).GetComponent<RemovePopup>();
-
             removePopup.removePopupViewManagerDelegate = () =>
             {
                 int cellIndex = cellList.IndexOf(cell);

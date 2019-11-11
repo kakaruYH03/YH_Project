@@ -26,6 +26,7 @@ public class AddPhotoPopupViewManager : PopupViewManager
         float cellHeight = (gridLayoutGroup.cellSize.y + gridLayoutGroup.spacing.y)
             * (sprites.Length / gridLayoutGroup.constraintCount) + gridLayoutGroup.padding.top + 
             gridLayoutGroup.padding.bottom;
+
         scrollRect.content.sizeDelta = new Vector2(0, cellHeight);
 
         foreach (Sprite sprite in sprites)

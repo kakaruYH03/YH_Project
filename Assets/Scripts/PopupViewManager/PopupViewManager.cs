@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Animator))]
 public class PopupViewManager : MonoBehaviour
 {
@@ -34,7 +33,6 @@ public class PopupViewManager : MonoBehaviour
         }
     }
 
-
     public void Close()
     {
         switch (this.animationType)
@@ -52,5 +50,4 @@ public class PopupViewManager : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
 }

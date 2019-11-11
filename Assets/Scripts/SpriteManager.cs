@@ -27,7 +27,7 @@ public class SpriteManager : MonoBehaviour
         {
             Sprite sprite = Resources.Load<Sprite>("Photo/" + name);
             if (sprite) cashedSprites.Add(sprite.name, sprite);
-
+            
             return sprite;
         }
         else

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Animator))]
 public class ViewManager : MonoBehaviour
 {
@@ -24,7 +23,6 @@ public class ViewManager : MonoBehaviour
         if (isAnimated)
         {
             GetComponent<Animator>().SetTrigger(Constant.kViewManagerOpen);
-
         }
     }
 
