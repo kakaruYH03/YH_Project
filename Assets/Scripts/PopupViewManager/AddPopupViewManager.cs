@@ -10,7 +10,7 @@ public class AddPopupViewManager : PopupViewManager
     [SerializeField] InputField phoneNumberInputField;
     [SerializeField] InputField emailInputField;
     [SerializeField] GameObject proPopup;
-    [SerializeField] Image profilePhotoImage;
+    [SerializeField] ImageButton profilePhotoImage;
 
     public delegate void AddContact(Contact contact);
     public AddContact addContactCallback;
@@ -58,8 +58,8 @@ public class AddPopupViewManager : PopupViewManager
             contact.name = name;
             contact.phoneNumber = phoneNumber;
             contact.email = email;
-            if (profilePhotoImage.sprite)
-                contact.profilePhotoFileName = profilePhotoImage.sprite.name;
+            if (profilePhotoImage.Image)
+                contact.profilePhotoFileName = profilePhotoImage.Image.name;
             // Main 화면에 Contact 객체전달
             addContactCallback(contact);
             // AddPanel 닫기
@@ -97,7 +97,7 @@ public class AddPopupViewManager : PopupViewManager
         addPhotoPopupViewManager.Open(AnimationType.TYPE2);
         addPhotoPopupViewManager.didSelectImage = (sprite) =>
         {
-            profilePhotoImage.sprite = sprite;
+            profilePhotoImage.Image = sprite;
         };
     }
 }
