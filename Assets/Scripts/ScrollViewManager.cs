@@ -60,6 +60,7 @@ public class ScrollViewManager : ViewManager, ICell
             if (isEditable)
             {
                 leftNavgationViewButton.SetTitle("완료");
+                rightNavgationViewButton.gameObject.SetActive(false);
                 foreach (Cell cell in cellList)
                 {
                     cell.ActiveDelete = true;
@@ -69,6 +70,7 @@ public class ScrollViewManager : ViewManager, ICell
             else
             {
                 leftNavgationViewButton.SetTitle("편집");
+                rightNavgationViewButton.gameObject.SetActive(true);
                 foreach (Cell cell in cellList)
                 {
                     cell.ActiveDelete = false;
