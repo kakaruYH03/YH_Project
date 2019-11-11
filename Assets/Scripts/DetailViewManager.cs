@@ -29,11 +29,12 @@ public class DetailViewManager : ViewManager
     [SerializeField] InputField phoneNumberInputField;
     [SerializeField] InputField emailInputField;
     [SerializeField] Button saveButton;
+    [SerializeField] Image detailImage;
 
     public delegate void DetailViewManagerSaveDelegate(Contact contact);
     public DetailViewManagerSaveDelegate saveDelegate;
 
-    public Contact? contact;
+    public Contact? contacts;
 
     bool editMode = true;
 
@@ -57,13 +58,14 @@ public class DetailViewManager : ViewManager
             rightNavgationViewButton.SetTitle("편집");
 
             // 데이터 화면 출력
-            if (contact.HasValue && !updateInputField)
+            if (contacts.HasValue && !updateInputField)
             {
 
-                Contact contactValue = contact.Value;
+                Contact contactValue = contacts.Value;
                 nameInputField.text = contactValue.name;
                 phoneNumberInputField.text = contactValue.phoneNumber;
                 emailInputField.text = contactValue.email;
+                detailImage.sprite = SpriteManager.GetSprite(contactValue.profilePhotoFileName);
             }
         }
     }

@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using System;
 
 public class ScrollViewManager : ViewManager, ICell
 {
@@ -164,7 +162,7 @@ public class ScrollViewManager : ViewManager, ICell
             DetailViewManager detailViewManager = Instantiate(detailViewPrefab).GetComponent<DetailViewManager>();
 
             Contact selectedContact = contacts.Value.contactList[cellIndex];
-            detailViewManager.contact = selectedContact;
+            detailViewManager.contacts = selectedContact;
 
             // ---절취선---
 

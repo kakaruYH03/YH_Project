@@ -7,14 +7,12 @@ using UnityEngine;
 public class ViewManager : MonoBehaviour
 {
     [SerializeField] protected GameObject buttonPrefab;
-
     [HideInInspector] public string title;                        // Navigation View에 표시할 타이틀
     [HideInInspector] public SCButton leftNavgationViewButton;      // Navigation View에 표시할 타이틀
     [HideInInspector] public SCButton rightNavgationViewButton;     // Navigation View에 표시할 타이틀
     [HideInInspector] public MainManager mainManager;
 
     Animator animator;
-
 
     public void Close()
     {
