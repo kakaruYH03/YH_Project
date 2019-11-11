@@ -29,7 +29,6 @@ public class DetailViewManager : ViewManager
     [SerializeField] InputField phoneNumberInputField;
     [SerializeField] InputField emailInputField;
     [SerializeField] Button saveButton;
-    [SerializeField] GameObject thirdViewPrefab;
 
     public delegate void DetailViewManagerSaveDelegate(Contact contact);
     public DetailViewManagerSaveDelegate saveDelegate;
@@ -94,9 +93,6 @@ public class DetailViewManager : ViewManager
 
     public void Save()
     {
-        // TODO: 사용자가 입력한 정보를 바탕으로 Contact 객체 만들기
-        // 만들어진 Contact 객체를 ScrollView에게 전달하면 끝!
-        // 편집 모드를 해제
 
         Contact newContact = new Contact();
         newContact.name = nameInputField.text;
@@ -106,12 +102,5 @@ public class DetailViewManager : ViewManager
         saveDelegate?.Invoke(newContact);
 
         ToggleEditMode(true);
-    }
-
-    public void Next()
-    {
-        ThirdViewManager thirdViewManager =
-            Instantiate(thirdViewPrefab).GetComponent<ThirdViewManager>();
-        mainManager.PresentViewManager(thirdViewManager);
     }
 }
