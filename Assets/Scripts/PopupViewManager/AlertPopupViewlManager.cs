@@ -6,6 +6,8 @@ public class AlertPopupViewlManager : PopupViewManager
 {
     public void OnClickOk()
     {
+        NavigationManager manager = GameObject.Find("Canvas").GetComponent<NavigationManager>();
+
         Close();
     }
 }

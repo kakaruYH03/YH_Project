@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainManager : MonoBehaviour
+public class NavigationManager : MonoBehaviour
 {
     // Prefab
     [SerializeField] GameObject alertPopupViewPrefab;   // 첫 실행시 나타날 Popup 창 Prefab
     [SerializeField] GameObject scrollViewPrefab;       // ScrollView Prefab
-    
+
     // 자식 요소들
     [SerializeField] NavigationView navigationView;     // 상단 Navigation View
     [SerializeField] RectTransform content;             // 화면이 표시될 위치
@@ -15,7 +15,7 @@ public class MainManager : MonoBehaviour
     // Present한 ViewManager들
     Stack<ViewManager> viewManagers = new Stack<ViewManager>();
 
-    public static MainManager Instance;
+    public static NavigationManager Instance;
 
     private void Awake()
     {
@@ -30,7 +30,7 @@ public class MainManager : MonoBehaviour
         // Welcom 메세지 출력
         if (PlayerPrefs.GetInt(Constant.kIsFirst, 1) == 1)
         {
-            AlertPopupViewlManager alertPopupViewlManager = 
+            AlertPopupViewlManager alertPopupViewlManager =
                 Instantiate(alertPopupViewPrefab, transform).GetComponent<AlertPopupViewlManager>();
 
             alertPopupViewlManager.Open();
@@ -50,20 +50,20 @@ public class MainManager : MonoBehaviour
         viewManager.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         viewManager.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 
-        if(viewManagers.Count > 0)
+        if (viewManagers.Count > 0)
         {
             viewManager.Open(true);
         }
 
         // ViewManager에게 MainManager 할당
-        viewManager.mainManager = this;
+        viewManager.mainManager= this;
 
         // Navigation Viewe에 타이틀 표시
         navigationView.Title = viewManager.title;
 
         // ViewManager에서
         // 오른쪽 버튼이 설정되어 있으면 버튼의 부모를 Navigation View의 RightButtonArea로 설정
-        if(viewManager.rightNavgationViewButton)
+        if (viewManager.rightNavgationViewButton)
         {
             viewManager.rightNavgationViewButton.transform.SetParent(navigationView.RightButtonArea);
             viewManager.rightNavgationViewButton.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -144,3 +144,4 @@ public class MainManager : MonoBehaviour
         }
     }
 }
+

@@ -9,7 +9,7 @@ public class ViewManager : MonoBehaviour
     [HideInInspector] public string title;                        // Navigation View에 표시할 타이틀
     [HideInInspector] public SCButton leftNavgationViewButton;      // Navigation View에 표시할 타이틀
     [HideInInspector] public SCButton rightNavgationViewButton;     // Navigation View에 표시할 타이틀
-    [HideInInspector] public MainManager mainManager;
+    [HideInInspector] public NavigationManager mainManager;
 
     Animator animator;
 
